@@ -1,0 +1,3 @@
+class MemoriesController < ApplicationController
+
+end
