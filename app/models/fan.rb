@@ -2,6 +2,8 @@ class Fan < ActiveRecord::Base
     has_many :shows
     has_many :memories, through: :shows
 
+    has_secure_password
+
     def slug
         self.username.split.join(" - ")
     end
