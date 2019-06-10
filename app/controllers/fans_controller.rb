@@ -5,9 +5,13 @@ class FansController < ApplicationController
     erb :'fans/login' 
     end
 
-    get '/fans/new' do
+    get '/fans/signup' do
 
-    erb :'/fans/new'
+    erb :'/fans/create'
+    end
+
+    post '/fans/signup' do
+        binding.pry
     end
 
 end
