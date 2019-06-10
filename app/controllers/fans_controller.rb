@@ -10,8 +10,14 @@ class FansController < ApplicationController
     erb :'/fans/create'
     end
 
+    get '/fans/:slug' do
+
+    erb :'/fans/homepage'
+    end
+
     post '/fans/signup' do
         binding.pry
+    redirect :'/fans/:slug'
     end
 
 end
