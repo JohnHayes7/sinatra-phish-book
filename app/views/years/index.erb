@@ -1,1 +1,7 @@
 <h1> This is the Years Index Page</h1>
+
+<% Year.all.drop(1).reverse.each do |y| %> 
+<ul>
+    <li> <%= y.value %> </li>
+    <% end %>
+</ul> 
