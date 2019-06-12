@@ -5,10 +5,12 @@ class FansController < ApplicationController
     erb :'fans/login' 
     end
 
+    
     get '/fans/signup' do
 
     erb :'/fans/create'
     end
+
 
     get '/fans/:slug' do
         if logged_in?(session)
@@ -23,6 +25,7 @@ class FansController < ApplicationController
    
     end
 
+
     post '/fans/signup' do
         @fan = Fan.find_by_username(params[:username])
         if @fan == nil
@@ -34,6 +37,7 @@ class FansController < ApplicationController
         end
     end
 
+
     post '/fans/login' do
        @fan = Fan.find_by_username(params[:username])
        
@@ -44,6 +48,7 @@ class FansController < ApplicationController
         redirect '/fans/login'
        end
     end
+
 
     post '/fans/logout' do 
         session.clear
