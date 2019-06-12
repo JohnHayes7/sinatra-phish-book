@@ -2,6 +2,6 @@
 
 <% Year.all.drop(1).reverse.each do |y| %> 
 <ul>
-    <li> <%= y.value %> </li>
+    <li> <a href="/shows/<%= y.value %>"> <%= y.value %> </a></li>
     <% end %>
 </ul> 
