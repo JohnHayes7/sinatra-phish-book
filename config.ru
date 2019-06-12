@@ -7,4 +7,5 @@ end
 use FansController
 use ShowsController
 use MemoriesController
+use YearsController
 run ApplicationController
