@@ -5,15 +5,11 @@ class Fan < ActiveRecord::Base
     has_secure_password
 
     def slug
-        self.username.split.join(" - ")
+        self.username.downcase.split.join(" - ")
     end
 
-    def self.find_by_slug(slug)
-        self.all.find do |f|
-            if f.slug == slug
-                f
-            end
-        end
+    def self.find_by_slug(username_slug)
+        self.all.find {|f| f.slug == username_slug}
     end
 
 end
