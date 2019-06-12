@@ -12,10 +12,15 @@ class FansController < ApplicationController
 
     get '/fans/:slug' do
         if logged_in?(session)
-       @fan = Fan.find_by_slug(params[:slug])
+            @fan = Fan.find_by_slug(params[:slug])
+
+            erb :'/fans/homepage'
+        else
+            redirect '/fans/login'
+
         end
         
-    erb :'/fans/homepage'
+   
     end
 
     post '/fans/signup' do
@@ -43,7 +48,7 @@ class FansController < ApplicationController
     post '/fans/logout' do 
         session.clear
 
-    erb :welcome
+    redirect '/'
     end
 
 end
