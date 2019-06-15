@@ -22,7 +22,9 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
+    if logged_in?(session)
     erb :welcome
+    end
   end
 
   get '/about' do

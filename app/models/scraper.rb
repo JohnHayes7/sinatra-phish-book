@@ -17,7 +17,7 @@ class Scraper
             end
         end
         years.each do |y|
-            Year.create(:value => y, :shows =>[])
+            Year.create(:value => y)
             end
         end
 
