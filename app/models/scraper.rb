@@ -61,7 +61,7 @@ class Scraper
     
             show_info = day_date_ary.zip(venue_ary, loc_ary, sets_ary)
             show_info.each do |info|
-                PhishBook::Show.new("#{info[0]}", "#{info[1]}", "#{info[2]}", "#{info[3]}")
+                Show.create(:date => "#{info[0]}", :venue => "#{info[1]}", :location => "#{info[2]}", :setlist => "#{info[3]}")
                 end
         end
         
