@@ -1,5 +1,16 @@
 <h1>Welcome, <%= @fan.username %> </h1>
+<h3>Here are your shows:</h3>
+
+<div id="years_bar">
+<h5>More Shows By Years:</h5>
+<% Year.all.reverse.each do |y| %> 
+    <ul>
+        <li> <a href="/shows/<%= y.value %>"> <%= y.value %> </a></li>
+        <% end %>
+    </ul> 
+
+</div>
 
 <form action='/fans/logout' method="post">
-<button type="submit">LogOut</button>
+<button id="logput-btn" type="submit">LogOut</button>
 </form>

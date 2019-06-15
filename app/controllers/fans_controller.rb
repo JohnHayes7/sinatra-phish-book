@@ -5,7 +5,7 @@ class FansController < ApplicationController
     erb :'fans/login' 
     end
 
-    
+
     get '/fans/signup' do
 
     erb :'/fans/create'
@@ -40,10 +40,10 @@ class FansController < ApplicationController
 
     post '/fans/login' do
        @fan = Fan.find_by_username(params[:username])
-       
        if @fan && @fan.authenticate(params[:password])
-        session[:id] = @fan.id
-        redirect "/fans/#{@fan.slug}"
+        session[:user_id] = @fan.id
+        binding.pry
+        redirect "/fans/#{@fan.slug}"   
        else
         redirect '/fans/login'
        end
