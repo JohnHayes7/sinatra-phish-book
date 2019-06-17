@@ -6,7 +6,7 @@ class ShowsController < ApplicationController
         if @year.shows.empty?
              shows = Show.all.select {|s| s[:date].split(" ")[1].split("/").last.to_i == @year.value}
              
-                if shows == nil
+                if shows.empty?
                     Scraper.show_info_scraper(@year.value)
                     added_shows = Show.all.select {|s| s[:date].split(" ")[1].split("/").last.to_i == @year.value}
                     added_shows.each do |s|
@@ -20,7 +20,7 @@ class ShowsController < ApplicationController
                     end
                 end
         end
-
+       
     erb :'shows/show'
     end
 

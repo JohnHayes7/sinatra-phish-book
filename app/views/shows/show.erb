@@ -1,9 +1,9 @@
 <h1>Here are the shows from <%= @year.value %></h1>
 
-<% @year.shows.each do |s| %>
+<% @year.shows.reverse.each do |s| %>
     
     <h3><%= s[:venue] %></h3> 
-    <h3><%= s[:location]%></h3> 
+    <h4><%= s[:location]%></h4> 
     <h4><%= s[:date] %></h4>
     <p> <%= s[:setlist] %> </p>
    
