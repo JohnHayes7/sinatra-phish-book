@@ -1,7 +1,7 @@
-<h1>Here are the shows from <%= @year.value %></h1>
+<h1>PHISH in <%= @year.value %></h1>
 
 <% @year.shows.reverse.each do |s| %>
-    
+    <a href="/shows/<%= s.date_slug %>">
     <h3><%= s[:venue] %></h3> 
     <h4><%= s[:location]%></h4> 
     <h4><%= s[:date] %></h4>

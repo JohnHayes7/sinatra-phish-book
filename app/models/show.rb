@@ -4,7 +4,12 @@ class Show < ActiveRecord::Base
     belongs_to :year   
 
     def date_slug
-        binding.pry
+        self[:date].split(" ")[1].split("/").join("-")
     end
+
+    def self.find_by_slug(slug)
+        self.all.find {|f| f.date_slug == slug}
+    end
+
     
 end
