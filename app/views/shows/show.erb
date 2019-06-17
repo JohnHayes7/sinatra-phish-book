@@ -7,6 +7,6 @@
 
 <a>Add to My shows</a>
 <a>Add a Memory</a><br>
-<a>Back to homepage</a><br>
-<a>Back to current year</a><br>
-<a>Back to years index</a>
+<a href="/fans/<%= @current_user.slug %>">Back to homepage</a><br>
+<a href="/years/<%=@show.year.value%>">Back to current year</a><br>
+<a href="/years">Back to years index</a>
