@@ -14,7 +14,7 @@ class ShowsController < ApplicationController
         @show.fan_id = @fan.id
         @show.save
         
-        redirect '/shows/#{params[:slug]'
+        redirect "/shows/#{params[:slug]}"
         
     end
     
