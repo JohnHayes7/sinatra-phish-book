@@ -2,7 +2,7 @@ class ShowsController < ApplicationController
     
     get '/shows/:year' do
     @year = Year.find_by(:value => params[:year])
-        
+        #SHOULD REFACTOR BELOW
         if @year.shows.empty?
              shows = Show.all.select {|s| s[:date].split(" ")[1].split("/").last.to_i == @year.value}
              
@@ -21,7 +21,6 @@ class ShowsController < ApplicationController
                 end
         end
 
-        binding.pry
     erb :'shows/show'
     end
 
