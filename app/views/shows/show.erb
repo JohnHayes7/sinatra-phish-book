@@ -4,11 +4,8 @@
 <p><%= @show[:setlist] %></p>
 
 <h3>Memories:</h3><br>
-<form action="/fans/add_show" method="POST">
-<input type="hidden" name="show_id"/>
-<button type="submit" id=>Add to My Shows</button>
-</form>
-<
+<a href="/shows/<%=@show.date_slug%>/add_show">Add to My Shows</a>
+
 <a>Add a Memory</a><br>
 <a href="/fans/<%= @current_user.slug %>">Back to homepage</a><br>
 <a href="/years/<%=@show.year.value%>">Back to current year</a><br>

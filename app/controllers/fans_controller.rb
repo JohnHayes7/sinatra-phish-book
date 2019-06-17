@@ -56,7 +56,7 @@ class FansController < ApplicationController
     redirect '/'
     end
 
-    post '/fans/add_show' do
+    get '/fans/:slug/add_show' do
         @fan = current_user(session)
         binding.pry
     end

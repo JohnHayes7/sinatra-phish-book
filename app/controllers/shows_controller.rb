@@ -8,5 +8,14 @@ class ShowsController < ApplicationController
         erb :'/shows/show'
     end
 
+    get '/shows/:slug/add_show' do
+        @fan = current_user(session)
+        @show = Show.find_by_slug(params[:slug])
+        @show.fan_id = @fan.id
+        @show.save
+        
+        redirect '/shows/#{params[:slug]'
+        
+    end
     
 end
