@@ -21,7 +21,12 @@ class ShowsController < ApplicationController
                 end
         end
        
-    erb :'shows/show'
+    erb :'years/show'
     end
 
+    get '/show/:date_slug' do
+
+    end
+
+    
 end

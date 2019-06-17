@@ -42,7 +42,7 @@ class FansController < ApplicationController
        @fan = Fan.find_by_username(params[:username])
        if @fan && @fan.authenticate(params[:password])
         session[:user_id] = @fan.id
-        binding.pry
+        
         redirect "/fans/#{@fan.slug}"   
        else
         redirect '/fans/login'
