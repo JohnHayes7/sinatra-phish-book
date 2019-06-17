@@ -5,7 +5,7 @@
 <h5>More Shows By Years:</h5>
 <% Year.all.reverse.each do |y| %> 
     <ul>
-        <li> <a href="/shows/<%= y.value %>"> <%= y.value %> </a></li>
+        <li> <a href="/years/<%= y.value %>"> <%= y.value %> </a></li>
         <% end %>
     </ul> 
 
