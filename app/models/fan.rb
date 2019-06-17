@@ -12,4 +12,8 @@ class Fan < ActiveRecord::Base
         self.all.find {|f| f.slug == username_slug}
     end
 
+    def add_show(show)
+
+    end
+
 end
