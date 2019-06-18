@@ -10,8 +10,15 @@ class MemoriesController < ApplicationController
     end
 
     get '/memories/:id/edit' do
-        
-    erb :'memories/edit'
+        if logged_in?(session)
+        @mem = Memory.find_by_id(params[:id])
+        @fan = current_user(session)
+        end
+            if @mem.fan_id == @fan.id
+                erb :'memories/edit'
+            else
+                redirect "/fans/#{@fan.slug}"
+            end
     end
 
     post '/memories/:slug' do
