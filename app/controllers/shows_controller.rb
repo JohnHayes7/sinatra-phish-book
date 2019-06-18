@@ -13,7 +13,7 @@ class ShowsController < ApplicationController
         @show = Show.find_by_slug(params[:slug])
     
         @show.fan_id = @fan.id
-        
+        @show.fans << Fan.find_by_id("#{@fan.id}")
         @show.save
         
         redirect "/shows/#{params[:slug]}"

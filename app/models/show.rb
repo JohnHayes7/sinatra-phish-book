@@ -1,6 +1,6 @@
 class Show < ActiveRecord::Base
     has_many :fans
-    has_many :memories, through: :fans 
+    has_many :memories 
     belongs_to :year   
 
     def date_slug

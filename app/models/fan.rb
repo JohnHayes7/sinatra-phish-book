@@ -1,6 +1,6 @@
 class Fan < ActiveRecord::Base
     has_many :shows
-    has_many :memories, through: :shows
+    has_many :memories
 
     has_secure_password
 

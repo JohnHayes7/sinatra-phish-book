@@ -3,10 +3,16 @@
 <h2><%= @show[:date] %></h2>
 <p><%= @show[:setlist] %></p>
 
-<h3>Memories:</h3><br>
-
+<h4>Memories:</h4><br>
+    <% @show.memories.each do |m| %>
+    <%=m.fan.username%> says: <%= m. content %>
+    <a href="/memories/<%=m.id%>/edit">edit</a> <br>
+    <% end %><br>
+    <br>
+<div>
 <a href="/shows/<%=@show.date_slug%>/add_show">Add to My Shows</a><br>
 <a href="/memories/<%=@show.date_slug%>/new">Add a Memory</a><br>
 <a href="/fans/<%= @current_user.slug %>">Back to homepage</a><br>
 <a href="/years/<%=@show.year.value%>">Back to current year</a><br>
 <a href="/years">Back to years index</a>
+</div>
