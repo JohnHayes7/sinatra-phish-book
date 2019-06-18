@@ -1,5 +1,5 @@
 class Show < ActiveRecord::Base
-    has_many :fans
+    has_and_belongs_to_many :fans
     has_many :memories 
     belongs_to :year   
 

@@ -11,15 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190618130849) do
+ActiveRecord::Schema.define(version: 20190618183746) do
 
   create_table "fans", force: :cascade do |t|
     t.string  "username"
     t.string  "email"
     t.string  "password_digest"
-    t.integer "show_id"
     t.integer "memory_id"
   end
+
+  create_table "fans_shows", id: false, force: :cascade do |t|
+    t.integer "show_id", null: false
+    t.integer "fan_id",  null: false
+  end
+
+  add_index "fans_shows", ["fan_id"], name: "index_fans_shows_on_fan_id"
+  add_index "fans_shows", ["show_id"], name: "index_fans_shows_on_show_id"
 
   create_table "memories", force: :cascade do |t|
     t.integer "fan_id"
@@ -33,7 +40,6 @@ ActiveRecord::Schema.define(version: 20190618130849) do
     t.string  "setlist"
     t.integer "year_id"
     t.string  "venue"
-    t.integer "fan_id"
     t.integer "memory_id"
   end
 

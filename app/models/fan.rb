@@ -1,5 +1,5 @@
 class Fan < ActiveRecord::Base
-    has_many :shows
+    has_and_belongs_to_many :shows
     has_many :memories
 
     has_secure_password
@@ -14,7 +14,9 @@ class Fan < ActiveRecord::Base
 
     def add_show(show)
         self.shows << show
-        
+        show.fans << self
+        show.save
+        self.save
     end
 
 end

@@ -33,7 +33,7 @@ class FansController < ApplicationController
             session[:user_id] = @fan.id
             redirect :"/fans/#{@fan.slug}"
         else
-            redirect :'fans/signup'
+            redirect :'fans/login'
         end
     end
 
@@ -45,7 +45,7 @@ class FansController < ApplicationController
         
         redirect "/fans/#{@fan.slug}"   
        else
-        redirect '/fans/login'
+        redirect '/fans/signup'
        end
     end
 
