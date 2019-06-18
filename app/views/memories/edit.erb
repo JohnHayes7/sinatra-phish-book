@@ -1,1 +1,11 @@
 <h1>Memory Edit Page</h1>
+<%= @mem.content %>
+<br>
+<br>
+<form action="/memories/edit/<%= @mem.id %>" method="post">
+<input type="hidden" id="hidden" name="_method" value="patch"/>
+<label>Edit Memory:</label><br>
+<input type="text" name="content" id="content" value="<%= @mem.content %>" required/>
+<button type="submit">Submit New Memory</button>
+
+</form>

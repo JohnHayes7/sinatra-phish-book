@@ -1,15 +1,22 @@
 class MemoriesController < ApplicationController
 
     get '/memories/:slug/new' do
+        @fan = current_user(session)
+        
         if logged_in?(session)
-        @show = Show.find_by_slug(params[:slug])
-        erb :'/memories/create'
+            @show = Show.find_by_slug(params[:slug])
+            if @fan.shows.include?(@show)
+            erb :'/memories/create'
+            else
+            redirect "/shows/#{@show.date_slug}"
+            end
         else
         redirect "/fans/login"
         end
     end
 
     get '/memories/:id/edit' do
+
         if logged_in?(session)
         @mem = Memory.find_by_id(params[:id])
         @fan = current_user(session)
@@ -31,6 +38,11 @@ class MemoriesController < ApplicationController
         @show.memory_id = @mem.id
         @show.save
     redirect "/shows/#{@show.date_slug}"
+    end
+
+    patch '/memories/edit/:id' do 
+        @mem = Memory.find_by_id(params[:id])
+        binding.pry
     end
 
 end
