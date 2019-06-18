@@ -11,7 +11,9 @@ class ShowsController < ApplicationController
     get '/shows/:slug/add_show' do
         @fan = current_user(session)
         @show = Show.find_by_slug(params[:slug])
-        @show.fan_id = @fan.id
+        binding.pry
+        @show.fan_ids << @fan.id
+        
         @show.save
         
         redirect "/shows/#{params[:slug]}"
