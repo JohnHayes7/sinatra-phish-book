@@ -1,11 +1,14 @@
 <h1>Welcome, <%= @fan.username %> </h1>
 <h3>Here are your shows:</h3>
 <% @fan.shows.each do |s| %>
-<h3><%= s[:venue] %> </h3>
-<h4><%= s[:location] %></h4>
-<h4><%= s[:date] %></h4>
-<p><%= s[:setlist] %></p>
-    <% end %>
+    <a href="/shows/<%=s.date_slug%>">
+    <h3><%= s[:venue] %> </h3>
+    <h4><%= s[:location] %></h4>
+    <h4><%= s[:date] %></h4>
+    <p><%= s[:setlist] %></p>
+    </a>
+<% end %>
+
 <div id="years_bar">
 <h5>More Shows By Years:</h5>
 <% Year.all.reverse.each do |y| %> 

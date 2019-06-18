@@ -1,0 +1,6 @@
+<h1>Leave a memory for <%=@show[:date].split(" ")[1]%> <%=@show[:venue]%></h1>
+
+<form action="/memories/<%=@show.date_slug%>" method="post">
+
+<button type="submit">Add Memory</button>
+</form>
