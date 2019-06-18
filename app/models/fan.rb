@@ -14,8 +14,6 @@ class Fan < ActiveRecord::Base
 
     def add_show(show)
         self.shows << show
-        show.fans << self
-        show.save
         self.save
     end
 
