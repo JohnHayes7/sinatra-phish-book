@@ -13,7 +13,8 @@ class Fan < ActiveRecord::Base
     end
 
     def add_show(show)
-
+        self.shows << show
+        
     end
 
 end

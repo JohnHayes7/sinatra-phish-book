@@ -1,7 +1,8 @@
-<h1>Leave a memory for <%=@show[:date].split(" ")[1]%> <%=@show[:venue]%></h1>
+<h1>What's your memory of: </h1>
+<h2><%=@show[:date].split(" ")[1]%> <%=@show[:venue]%></h2>
 
 <form action="/memories/<%=@show.date_slug%>" method="post">
 <label for="memory">Compose Memory</label><br>
-<textarea type="text" id="memory" name="content" rows="20" cols="100" required></textarea><br>
+<textarea type="text" id="memory" name="content" rows="15" cols="100" required></textarea><br>
 <button type="submit">Add Memory</button>
 </form>
