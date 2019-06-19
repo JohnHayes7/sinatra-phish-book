@@ -20,12 +20,14 @@ class MemoriesController < ApplicationController
 
         if logged_in?(session)
         @mem = Memory.find_by_id(params[:id])
+        @show = Show.find_by(:id => @mem.show_id)
         @fan = current_user(session)
         end
             if @mem.fan_id == @fan.id
                 erb :'memories/edit'
             else
-                redirect "/fans/#{@fan.slug}"
+                flash[:edit_creds] = "You can only edit your memories"
+                redirect "/shows/#{@show.date_slug}"
             end
     end
 

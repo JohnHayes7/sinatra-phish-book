@@ -6,6 +6,10 @@
     <h3><%= flash[:show_not_added] %></h3>
 <% end %>
 
+<% if flash.has?(:edit_creds) %>
+    <h3><%= flash[:edit_creds] %></h3>
+<% end %>
+
 <h1><%= @show[:venue] %>    </h1>
 <h2><%= @show[:location] %></h2>
 <h2><%= @show[:date] %></h2>
