@@ -20,5 +20,13 @@ class ShowsController < ApplicationController
             redirect "/shows/#{params[:slug]}"
         end
     end
+
+    get '/shows/:slug/remove' do 
+        @fan = current_user(session)
+        @show = Show.find_by_slug(params[:slug])
+        @fan.shows.delete(@show)
+
+        redirect "/fans/#{@fan.slug}"
+    end
     
 end

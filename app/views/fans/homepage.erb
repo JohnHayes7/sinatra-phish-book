@@ -7,6 +7,7 @@
     <h4><%= s[:date] %></h4>
     <p><%= s[:setlist] %></p>
     </a>
+    <a href="/shows/<%= s.date_slug %>/remove">Remove from my shows</a>
 <% end %>
 
 <div id="years_bar">
@@ -20,5 +21,5 @@
 </div>
 
 <form action='/fans/logout' method="post">
-<button id="logput-btn" type="submit">LogOut</button>
+<button id="logout-btn" type="submit">LogOut</button>
 </form>
