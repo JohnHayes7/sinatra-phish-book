@@ -1,3 +1,11 @@
+<% if flash.has?(:login_error) %>
+    <h3><%= flash[:login_error] %></h3>
+<% end %>
+
+<% if flash.has?(:must_login) %>
+    <h3><%= flash[:must_login] %></h3>
+<% end %>
+
 <h1> PHISHBOOK LOGIN PAGE</h1>
 <h4>Please Login to continue</h4>
 <form action="/fans/login" method="POST">
@@ -7,3 +15,5 @@
 <input type="text" name="password" id="password"/><br>
 <button type="submit">Login</button>
 </form>
+
+<a href="/fans/signup">Create an Account</a>

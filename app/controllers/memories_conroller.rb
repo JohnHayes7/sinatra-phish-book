@@ -11,6 +11,7 @@ class MemoriesController < ApplicationController
             redirect "/shows/#{@show.date_slug}"
             end
         else
+            flash[:must_login] = "You must be logged in to add a memory"
         redirect "/fans/login"
         end
     end

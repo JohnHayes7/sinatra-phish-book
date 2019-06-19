@@ -45,7 +45,8 @@ class FansController < ApplicationController
         
         redirect "/fans/#{@fan.slug}"   
        else
-        redirect '/fans/signup'
+        flash[:login_error] = "Invalid username or password. Please try again or create an account."
+        redirect '/fans/login'
        end
     end
 
