@@ -50,7 +50,15 @@ class MemoriesController < ApplicationController
         else
             redirect "/memories/#{@mem.id}/edit"
         end
-      end
+    end
+
+    post '/memories/:id/delete' do 
+        @mem = Memory.find_by(:id => params[:id])
+        @show = Show.find_by(:id => @mem.show_id)
+        @mem.destroy
+
+        redirect "/shows/#{@show.date_slug}"
+    end
 
     
 
