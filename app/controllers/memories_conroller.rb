@@ -40,9 +40,18 @@ class MemoriesController < ApplicationController
     redirect "/shows/#{@show.date_slug}"
     end
 
-    patch '/memories/edit/:id' do 
+    post '/memories/:id/edit' do    
         @mem = Memory.find_by_id(params[:id])
-        binding.pry
-    end
+        @show = Show.find_by(:id => @mem.show_id)
+        if !params[:content].empty?
+            @mem.update(:content => params[:content])
+            @mem.save
+            redirect "/shows/#{@show.date_slug}"
+        else
+            redirect "/memories/#{@mem.id}/edit"
+        end
+      end
+
+    
 
 end
