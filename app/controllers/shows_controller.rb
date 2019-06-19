@@ -24,9 +24,13 @@ class ShowsController < ApplicationController
     get '/shows/:slug/remove' do 
         @fan = current_user(session)
         @show = Show.find_by_slug(params[:slug])
-        @fan.shows.delete(@show)
-
-        redirect "/fans/#{@fan.slug}"
+        if @fan.shows.include?(@show)
+            @fan.shows.delete(@show)
+            redirect "/fans/#{@fan.slug}"
+        else
+            flash[:remove_error] = "This show is not in your collection of shows"
+            redirect "/fans/#{@fan.slug}"
+        end
     end
     
 end

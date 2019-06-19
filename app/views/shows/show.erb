@@ -1,13 +1,13 @@
 <% if flash.has?(:show_added) %>
-    <h3><%= flash[:show_added] %></h3>
+    <h2><%= flash[:show_added] %></h2>
 <% end %>
 
 <% if flash.has?(:show_not_added) %>
-    <h3><%= flash[:show_not_added] %></h3>
+    <h2><%= flash[:show_not_added] %></h2>
 <% end %>
 
 <% if flash.has?(:edit_creds) %>
-    <h3><%= flash[:edit_creds] %></h3>
+    <h2><%= flash[:edit_creds] %></h2>
 <% end %>
 
 <h1><%= @show[:venue] %>    </h1>
@@ -24,6 +24,7 @@
 <div>
 <a href="/shows/<%=@show.date_slug%>/add_show">Add to My Shows</a><br>
 <a href="/memories/<%=@show.date_slug%>/new">Add a Memory</a><br>
+<a href="/shows/<%= @show.date_slug %>/remove">Remove from my shows</a><br>
 <a href="/fans/<%= @current_user.slug %>">Back to homepage</a><br>
 <a href="/years/<%=@show.year.value%>">Back to current year</a><br>
 <a href="/years">Back to years index</a>

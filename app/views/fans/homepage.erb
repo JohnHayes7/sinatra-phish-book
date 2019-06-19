@@ -1,3 +1,7 @@
+<% if flash.has?(:remove_error) %>
+    <h3><%= flash[:remove_error] %></h3>
+<% end %>
+
 <h1>Welcome, <%= @fan.username %> </h1>
 <h3>Here are your shows:</h3>
 <% @fan.shows.each do |s| %>
