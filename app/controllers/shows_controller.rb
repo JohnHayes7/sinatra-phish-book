@@ -2,10 +2,15 @@ class ShowsController < ApplicationController
     
 
     get '/shows/:date_slug' do
+        if logged_in?(session)
         @show = Show.find_by_slug(params[:date_slug])
         @fan = current_user(session)
         # binding.pry
         erb :'/shows/show'
+        else
+            flash[:must_login] = "YOU MUST LOGIN TO CONTINUE"
+            redirect :'/fans/login'
+        end
     end
 
     get '/shows/:slug/add_show' do

@@ -22,8 +22,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    
+    if logged_in?(session)
+      @fan = Fan.find_by(:id => session[:user_id])
+      redirect :"/fans/#{@fan.slug}"
+    else
     erb :welcome
+    end
   end
 
   get '/about' do
