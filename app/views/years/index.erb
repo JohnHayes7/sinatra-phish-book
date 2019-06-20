@@ -1,7 +1,6 @@
-<h1> This is the Years Index Page</h1>
+<h1> Shows by year</h1>
 
 <div id="years_bar">
-<h5>More Shows By Years:</h5>
 <% Year.all.reverse.each do |y| %> 
     <ul>
         <li> <a href="/years/<%= y.value %>"> <%= y.value %> </a></li>

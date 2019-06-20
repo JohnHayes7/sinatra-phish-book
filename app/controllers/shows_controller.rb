@@ -5,7 +5,6 @@ class ShowsController < ApplicationController
         if logged_in?(session)
         @show = Show.find_by_slug(params[:date_slug])
         @fan = current_user(session)
-        # binding.pry
         erb :'/shows/show'
         else
             flash[:must_login] = "YOU MUST LOGIN TO CONTINUE"
@@ -14,15 +13,20 @@ class ShowsController < ApplicationController
     end
 
     get '/shows/:slug/add_show' do
+        if logged_in?(session)
         @fan = current_user(session)
         @show = Show.find_by_slug(params[:slug])
-        if !@fan.shows.include?(@show)
-            @fan.add_show(@show)
-            flash[:show_added]= "Show successfully added to your shows"
-            redirect "/shows/#{params[:slug]}"
+            if !@fan.shows.include?(@show)
+                @fan.add_show(@show)
+                flash[:show_added]= "Show successfully added to your shows"
+                redirect "/shows/#{params[:slug]}"
+            else
+                flash[:show_not_added]="This show is already added to your shows"
+                redirect "/shows/#{params[:slug]}"
+            end
         else
-            flash[:show_not_added]="This show is already added to your shows"
-            redirect "/shows/#{params[:slug]}"
+            flash[:must_login] = "YOU MUST LOGIN TO CONTINUE"
+            redirect :'/fans/login'
         end
     end
 
