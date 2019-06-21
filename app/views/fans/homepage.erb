@@ -2,9 +2,10 @@
     <h3><%= flash[:remove_error] %></h3>
 <% end %>
 
-<h1>Welcome, <%= @fan.username %> </h1>
-<h3>Here are your shows:</h3>
+<h1>Welcome <%= @fan.username %> </h1>
+<h3>Here are your <%= @fan.shows.length%> shows:</h3>
 <% @fan.shows.each do |s| %>
+    <div id="your-shows">
     <a href="/shows/<%=s.date_slug%>">
     <h3><%= s[:venue] %> </h3>
     <h4><%= s[:location] %></h4>
@@ -12,9 +13,10 @@
     <p><%= s[:setlist] %></p>
     </a>
     <a href="/shows/<%= s.date_slug %>/remove">Remove from my shows</a>
+    </div>
 <% end %>
 
-<div id="years_bar">
+<div id="years-bar">
 <h5>More Shows By Years:</h5>
 <% Year.all.reverse.each do |y| %> 
     <ul>
