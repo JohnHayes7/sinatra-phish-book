@@ -1,19 +1,15 @@
 class MemoriesController < ApplicationController
 
     get '/memories/:slug/new' do
+        redirect_if_not_logged_in
         @fan = current_user(session)
-        
-        if logged_in?(session)
             @show = Show.find_by_slug(params[:slug])
             if @fan.shows.include?(@show)
             erb :'/memories/create'
             else
+                flash[:your_shows] = "You can only add memories to your shows.  Add this show to your collection to leave a memory."
             redirect "/shows/#{@show.date_slug}"
             end
-        else
-            flash[:must_login] = "You must be logged in to add a memory"
-        redirect "/fans/login"
-        end
     end
 
     get '/memories/:id/edit' do
@@ -43,10 +39,10 @@ class MemoriesController < ApplicationController
     redirect "/shows/#{@show.date_slug}"
     end
 
-    post '/memories/:id/edit' do    
+    patch '/memories/:id/edit' do    
         @mem = Memory.find_by_id(params[:id])
         @show = Show.find_by(:id => @mem.show_id)
-        if !params[:content].empty?
+        if !params[:content].empty? && @mem.fan_id == current_user(session).id
             @mem.update(:content => params[:content])
             @mem.save
             redirect "/shows/#{@show.date_slug}"
@@ -55,10 +51,13 @@ class MemoriesController < ApplicationController
         end
     end
 
-    post '/memories/:id/delete' do 
+    delete '/memories/:id/delete' do 
+        
         @mem = Memory.find_by(:id => params[:id])
         @show = Show.find_by(:id => @mem.show_id)
-        @mem.destroy
+        if @mem.fan_id == current_user(session).id
+            @mem.destroy
+        end
 
         redirect "/shows/#{@show.date_slug}"
     end

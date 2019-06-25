@@ -1,0 +1,16 @@
+current directory: /Users/John/Dev/Projects/Sinatra/sinatra-phish-book/vendor/bundle/ruby/2.6.0/gems/bond-0.5.1/ext/readline_line_buffer
+/Users/John/.rvm/rubies/ruby-2.6.1/bin/ruby -I /Users/John/.rvm/rubies/ruby-2.6.1/lib/ruby/site_ruby/2.6.0 -r ./siteconf20190625-82041-gbggpg.rb extconf.rb
+
+current directory: /Users/John/Dev/Projects/Sinatra/sinatra-phish-book/vendor/bundle/ruby/2.6.0/gems/bond-0.5.1/ext/readline_line_buffer
+make "DESTDIR=" clean
+make: *** No rule to make target `clean'.  Stop.
+
+current directory: /Users/John/Dev/Projects/Sinatra/sinatra-phish-book/vendor/bundle/ruby/2.6.0/gems/bond-0.5.1/ext/readline_line_buffer
+make "DESTDIR="
+echo "This is a dummy extension"
+This is a dummy extension
+
+current directory: /Users/John/Dev/Projects/Sinatra/sinatra-phish-book/vendor/bundle/ruby/2.6.0/gems/bond-0.5.1/ext/readline_line_buffer
+make "DESTDIR=" install
+echo "This is a dummy extension"
+This is a dummy extension

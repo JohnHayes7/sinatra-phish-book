@@ -10,6 +10,10 @@
     <h2><%= flash[:edit_creds] %></h2>
 <% end %>
 
+<% if flash.has?(:your_shows) %>
+    <h2><%= flash[:your_shows] %></h2>
+<% end %>
+
 <h1><%= @show[:venue] %>    </h1>
 <h2><%= @show[:location] %></h2>
 <h2><%= @show[:date] %></h2>

@@ -27,27 +27,33 @@ class FansController < ApplicationController
 
 
     post '/fans/signup' do
-        @fan = Fan.find_by_username(params[:username])
-        if @fan == nil
-            @fan = Fan.create(:username => params[:username], :email => params[:email], :password => params[:password])
-            session[:user_id] = @fan.id
-            redirect :"/fans/#{@fan.slug}"
+        if !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
+            @fan = Fan.find_by_username(params[:username])
+            if @fan == nil
+                @fan = Fan.create(:username => params[:username], :email => params[:email], :password => params[:password])
+                session[:user_id] = @fan.id
+                redirect :"/fans/#{@fan.slug}"
+            else
+                redirect :'fans/login'
+            end
         else
-            redirect :'fans/login'
+            flash[:empty_field] = "You Must Fill Out All Fields To Create A Profile"
+            redirect "/fans/signup"
         end
     end
 
 
     post '/fans/login' do
-       @fan = Fan.find_by_username(params[:username])
-       if @fan && @fan.authenticate(params[:password])
-        session[:user_id] = @fan.id
         
-        redirect "/fans/#{@fan.slug}"   
-       else
-        flash[:login_error] = "Invalid username or password. Please try again or create an account."
-        redirect '/fans/login'
-       end
+        @fan = Fan.find_by_username(params[:username])
+        if @fan && @fan.authenticate(params[:password])
+            session[:user_id] = @fan.id
+            
+            redirect "/fans/#{@fan.slug}"   
+        else
+            flash[:login_error] = "Invalid username or password. Please try again or create an account."
+            redirect '/fans/login'
+        end
     end
 
 

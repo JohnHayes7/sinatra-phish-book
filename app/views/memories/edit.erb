@@ -5,11 +5,12 @@
 <form action="/memories/<%= @mem.id %>/edit" method="post">
 <input type="hidden" id="hidden" name="_method" value="patch"/>
 <label>Edit Memory:</label><br>
-<input type="text" name="content" id="content" value="<%= @mem.content %>" required/>
-<button type="submit">Submit New Memory</button>
+<textarea type="text" id="memory" name="content" rows="15" cols="100" required><%= @mem.content %></textarea>
+<button type="submit">Submit Edit</button>
 </form>
 
 <h2>Delete Memory</h2>
 <form action="/memories/<%= @mem.id %>/delete" method="post">
+<input type="hidden" type="hidden" name="_method" value="delete">
 <button type="submit">Delete This Memory</button>
 </form>

@@ -21,10 +21,17 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  def redirect_if_not_logged_in
+    if !logged_in?(session)
+      flash[:must_login] = "You must be logged in to add a memory"
+      redirect "/fans/login"
+    end
+  end
+
   get "/" do
     if logged_in?(session)
       @fan = Fan.find_by(:id => session[:user_id])
-      redirect :"/fans/#{@fan.slug}"
+      redirect "/fans/#{@fan.slug}"
     else
     erb :welcome
     end
