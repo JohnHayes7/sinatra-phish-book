@@ -33,9 +33,8 @@ class MemoriesController < ApplicationController
         @mem = Memory.new(:content => params[:content])
         @mem.fan_id = @fan.id
         @mem.show_id = @show.id
+
         @mem.save
-        @show.memory_id = @mem.id
-        @show.save
     redirect "/shows/#{@show.date_slug}"
     end
 

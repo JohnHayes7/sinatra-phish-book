@@ -8,7 +8,7 @@ class ShowsController < ApplicationController
         erb :'/shows/show'
         else
             flash[:must_login] = "YOU MUST LOGIN TO CONTINUE"
-            redirect :'/fans/login'
+            redirect '/fans/login'
         end
     end
 

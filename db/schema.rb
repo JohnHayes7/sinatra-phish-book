@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190618183746) do
+ActiveRecord::Schema.define(version: 20190625213523) do
 
   create_table "fans", force: :cascade do |t|
-    t.string  "username"
-    t.string  "email"
-    t.string  "password_digest"
-    t.integer "memory_id"
+    t.string "username"
+    t.string "email"
+    t.string "password_digest"
   end
 
   create_table "fans_shows", id: false, force: :cascade do |t|
@@ -40,7 +39,6 @@ ActiveRecord::Schema.define(version: 20190618183746) do
     t.string  "setlist"
     t.integer "year_id"
     t.string  "venue"
-    t.integer "memory_id"
   end
 
   create_table "years", force: :cascade do |t|

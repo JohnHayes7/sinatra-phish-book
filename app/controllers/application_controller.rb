@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
 
   def redirect_if_not_logged_in
     if !logged_in?(session)
-      flash[:must_login] = "You must be logged in to add a memory"
+      flash[:must_login] = "You must be logged in to continue"
       redirect "/fans/login"
     end
   end
