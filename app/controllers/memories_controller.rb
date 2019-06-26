@@ -2,7 +2,6 @@ class MemoriesController < ApplicationController
 
     get '/memories/:slug/new' do
         redirect_if_not_logged_in
-        
             @show = Show.find_by_slug(params[:slug])
             if current_user(session).shows.include?(@show)
             erb :'/memories/create'
@@ -26,7 +25,6 @@ class MemoriesController < ApplicationController
 
     post '/memories/:slug' do
         @show = Show.find_by_slug(params[:slug])
-        # @fan = current_user(session)
         @mem = Memory.new(:content => params[:content])
         @mem.fan_id = current_user(session).id
         @mem.show_id = @show.id

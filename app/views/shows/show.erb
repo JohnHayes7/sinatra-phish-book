@@ -21,8 +21,10 @@
 
 <h4>Memories:</h4><br>
     <% @show.memories.each do |m| %>
-    <%=m.fan.username%> says: <%= m. content %>
-    <a href="/memories/<%=m.id%>/edit">edit</a> <br>
+    <%=m.fan.username%> says: <%= m. content %><br>
+        <% if m.fan_id == current_user(session).id %>
+            <a href="/memories/<%=m.id%>/edit">edit</a>
+        <% end %><br>
     <% end %><br>
     <br>
 <div>
@@ -32,4 +34,7 @@
 <a href="/fans/<%= current_user(session).slug %>">Back to homepage</a><br>
 <a href="/years/<%=@show.year.value%>">Back to current year</a><br>
 <a href="/years">Back to years index</a>
+<form action='/fans/logout' method="post">
+<button id="logout-btn" type="submit">LogOut</button>
+</form>
 </div>
