@@ -2,43 +2,32 @@ class ShowsController < ApplicationController
     
 
     get '/shows/:date_slug' do
-        if logged_in?(session)
+        redirect_if_not_logged_in
         @show = Show.find_by_slug(params[:date_slug])
-        @fan = current_user(session)
         erb :'/shows/show'
-        else
-            flash[:must_login] = "YOU MUST LOGIN TO CONTINUE"
-            redirect '/fans/login'
-        end
     end
 
     get '/shows/:slug/add_show' do
-        if logged_in?(session)
-        @fan = current_user(session)
+       redirect_if_not_logged_in
         @show = Show.find_by_slug(params[:slug])
-            if !@fan.shows.include?(@show)
-                @fan.add_show(@show)
+            if !current_user(session).shows.include?(@show)
+                current_user(session).add_show(@show)
                 flash[:show_added]= "Show successfully added to your shows"
                 redirect "/shows/#{params[:slug]}"
             else
                 flash[:show_not_added]="This show is already added to your shows"
                 redirect "/shows/#{params[:slug]}"
             end
-        else
-            flash[:must_login] = "YOU MUST LOGIN TO CONTINUE"
-            redirect :'/fans/login'
-        end
     end
 
     get '/shows/:slug/remove' do 
-        @fan = current_user(session)
         @show = Show.find_by_slug(params[:slug])
-        if @fan.shows.include?(@show)
-            @fan.shows.delete(@show)
-            redirect "/fans/#{@fan.slug}"
+        if current_user(session).shows.include?(@show)
+            current_user(session).shows.delete(@show)
+            redirect "/fans/#{current_user(session).slug}"
         else
             flash[:remove_error] = "This show is not in your collection of shows"
-            redirect "/fans/#{@fan.slug}"
+            redirect "/fans/#{current_user(session).slug}"
         end
     end
     

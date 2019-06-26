@@ -11,22 +11,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "password_security"
   end
 
-  def logged_in?(session)
-    !!session[:user_id]
-  end
-
-  def current_user(session)
-    if session[:user_id] != nil
-      @current_user = Fan.find(session[:user_id])
-    end
-  end
-
-  def redirect_if_not_logged_in
-    if !logged_in?(session)
-      flash[:must_login] = "You must be logged in to continue"
-      redirect "/fans/login"
-    end
-  end
+  
 
   get "/" do
     if logged_in?(session)
@@ -40,5 +25,25 @@ class ApplicationController < Sinatra::Base
   get '/about' do
     erb :about
   end
+
+  helpers do
+    def logged_in?(session)
+      !!session[:user_id]
+    end
+  
+    def current_user(session)
+      if session[:user_id] != nil
+        @current_user = Fan.find(session[:user_id])
+      end
+    end
+  
+    def redirect_if_not_logged_in
+      if !logged_in?(session)
+        flash[:must_login] = "YOU MUST BE LOGGED IN TO CONTINUE"
+        redirect "/fans/login"
+      end
+    end
+  end
+
 
 end

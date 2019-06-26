@@ -2,9 +2,9 @@ class MemoriesController < ApplicationController
 
     get '/memories/:slug/new' do
         redirect_if_not_logged_in
-        @fan = current_user(session)
+        
             @show = Show.find_by_slug(params[:slug])
-            if @fan.shows.include?(@show)
+            if current_user(session).shows.include?(@show)
             erb :'/memories/create'
             else
                 flash[:your_shows] = "You can only add memories to your shows.  Add this show to your collection to leave a memory."
@@ -13,13 +13,10 @@ class MemoriesController < ApplicationController
     end
 
     get '/memories/:id/edit' do
-
-        if logged_in?(session)
+        redirect_if_not_logged_in
         @mem = Memory.find_by_id(params[:id])
         @show = Show.find_by(:id => @mem.show_id)
-        @fan = current_user(session)
-        end
-            if @mem.fan_id == @fan.id
+            if @mem.fan_id == current_user(session).id
                 erb :'memories/edit'
             else
                 flash[:edit_creds] = "You can only edit your memories"
@@ -29,9 +26,9 @@ class MemoriesController < ApplicationController
 
     post '/memories/:slug' do
         @show = Show.find_by_slug(params[:slug])
-        @fan = current_user(session)
+        # @fan = current_user(session)
         @mem = Memory.new(:content => params[:content])
-        @mem.fan_id = @fan.id
+        @mem.fan_id = current_user(session).id
         @mem.show_id = @show.id
 
         @mem.save

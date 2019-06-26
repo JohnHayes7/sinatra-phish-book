@@ -2,9 +2,9 @@
     <h3><%= flash[:remove_error] %></h3>
 <% end %>
 
-<h1>Welcome <%= @fan.username %> </h1>
-<h3>Here are your <%= @fan.shows.length%> shows:</h3>
-<% @fan.shows.each do |s| %>
+<h1>Welcome <%= current_user(session).username %> </h1>
+<h3>Here are your <%= current_user(session).shows.length%> shows:</h3>
+<% current_user(session).shows.each do |s| %>
     <div id="your-shows">
     <a href="/shows/<%=s.date_slug%>">
     <h3><%= s[:venue] %> </h3>
