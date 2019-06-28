@@ -11,5 +11,9 @@ class Show < ActiveRecord::Base
         self.all.find {|f| f.date_slug == slug}
     end
 
+    def self.in_year_of(year)
+        self.all.select {|s| s[:date].split(" ")[1].split("/").last.to_i == year.value}
+    end
+
     
 end
